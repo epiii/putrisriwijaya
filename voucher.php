@@ -84,23 +84,31 @@
               canvas.height = hig;
 
 
-            // fill collor
-              var my_gradient=context.createLinearGradient(0,0,0,170);
-              my_gradient.addColorStop(0,"lightGrey");
-              my_gradient.addColorStop(1,"white");
+            // fill gradient collor
+              var my_gradient=context.createLinearGradient(0,0,0,400);
+              my_gradient.addColorStop(1,"lightGrey");
+              my_gradient.addColorStop(0,"white");
               context.fillStyle=my_gradient;
               context.fillRect(10,10,wid-20,hig-20);
 
-            // text properties
-              var txtX = 40;
-              var txtY = 60;
-              context.font = '20pt Arial';
-              context.fillStyle = 'grey';
-
             // set text into canvas
               context.rect(0,0,wid,hig);
-              // context.rect(10,10,(wid-10),(hig-10));
               context.stroke();
+
+            // title
+              context.font = '30pt Helvetica bold';
+              context.fillStyle = 'grey';
+              context.textAlign="center";
+              context.fillText("VOUCHER",wid/2,60);
+
+            // field properties
+              var txtX = 40;
+              var txtY = 120;
+              context.font = '18pt Arial';
+              context.fillStyle = 'grey';
+            // fields set
+              context.textAlign="left";
+              context.fillText("ID", txtX, txtY); // 400
               context.fillText("ID : <?php echo $userData['data']['id_pengguna'];?>", txtX, txtY); // 400
               context.fillText("NAMA : <?php echo $userData['data']['nama'];?>", txtX, (txtY+40)); // 400
         			context.fillText("HP : <?php echo $userData['data']['nohp'];?>", txtX, (txtY+80)); // 400
