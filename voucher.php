@@ -78,19 +78,28 @@
 
 
             // canvas properties
-              var pjg = 578;
-              var lbr = 300;
-              canvas.width = pjg;
-              canvas.height = lbr;
+              var wid = 578;
+              var hig = 300;
+              canvas.width = wid;
+              canvas.height = hig;
+
+
+            // fill collor
+              var my_gradient=context.createLinearGradient(0,0,0,170);
+              my_gradient.addColorStop(0,"lightGrey");
+              my_gradient.addColorStop(1,"white");
+              context.fillStyle=my_gradient;
+              context.fillRect(10,10,wid-20,hig-20);
 
             // text properties
               var txtX = 40;
-              var txtY = 40;
+              var txtY = 60;
               context.font = '20pt Arial';
-              context.fillStyle = 'blue';
+              context.fillStyle = 'grey';
 
-            // draw / set canvas
-              context.rect(10,10,(pjg-10),(lbr-10));
+            // set text into canvas
+              context.rect(0,0,wid,hig);
+              // context.rect(10,10,(wid-10),(hig-10));
               context.stroke();
               context.fillText("ID : <?php echo $userData['data']['id_pengguna'];?>", txtX, txtY); // 400
               context.fillText("NAMA : <?php echo $userData['data']['nama'];?>", txtX, (txtY+40)); // 400
@@ -101,8 +110,7 @@
               // save canvas image as data url (png format by default)
               var dataURL = canvas.toDataURL();
 
-              // set canvasImg image src to dataURL
-              // so it can be saved as an image
+              // set canvasImg image src to dataURL  so it can be saved as an image
               document.getElementById('canvasImg').src = dataURL;
 
               function downloadCanvas(link, canvasId, filename) {

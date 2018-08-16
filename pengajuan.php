@@ -107,35 +107,6 @@ require_once 'lib/fungsi.php';
 			}, 700);
 		});
 
-		function hargacb(jenis) {
-			$.ajax({
-				url:'action.php',
-				data:{
-					'mode':'comboharga',
-					'jenis':jenis
-				},type:'post',
-				dataType:'json',
-				beforeSend:function () {
-					$('.pageLoader').removeAttr('style');
-				},success:function(ret){
-					setTimeout(function(){
-						$('.pageLoader').attr('style','display:none');
-
-						var opt='';
-						if(ret.total==0) opt+='<option>-data kosong-</option>';
-						else{
-							opt+='<option value="">-- Pilih --</option>';
-							$.each(ret.returns.data, function  (id,val) {
-								opt+='<option value="'+val.harga_angka+'">'+val.harga_rp+'</option>';
-							});
-						}$('#hargacombo').html(opt);
-					}, 700);
-				}, error : function (xhr, status, errorThrown) {
-					$('.pageLoader').attr('style','display:none');
-			        alertinfo('danger','error : ['+xhr.status+'] '+errorThrown);
-			    }
-			});
-		}
 
 		function saveform(){
         var urlx ='&mode=save';
@@ -155,8 +126,8 @@ require_once 'lib/fungsi.php';
 							alertinfo((dt.status!='success'?'danger':'success'),dt.status);
 						},700);
 					},error: function (xhr, ajaxOptions, thrownError) {
-		        alert(xhr.status+' - '+xhr.responseText);
-		        alert(thrownError);
+		        alert(xhr.status+' - '+thrownError);
+						$('.pageLoader').attr('style','display:none');
 		      }
       });
     }

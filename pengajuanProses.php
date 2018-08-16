@@ -1,7 +1,8 @@
-	<?php
+<?php
 require_once 'lib/koneksi.php';
-require_once 'lib/lib.php';
+require_once 'lib/fungsi.php';
 
+// pr($_POST);
 $out=[];
 if (!isset($_POST['mode'])) {
 	$out['isRequest']=false;
@@ -16,8 +17,8 @@ if (!isset($_POST['mode'])) {
 			nohp ="'.$_POST['nohp'].'",
 			kode ="'.$_POST['kode'].'"
 		';
-		$e = mysqli_query($con,$s);
-		// vd($e);
+		// pr($s);
+		$e = mysqli_query($conn,$s);
 		$out['status']=$e?'success':'failed to save data';
 	}else if($mode=='delete'){
 		// code here
